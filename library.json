@@ -1,0 +1,27 @@
+{
+  "name": "vislib_robo",
+  "version": "0.0.22",
+  "description": "A \"vislib_robo\" library provides abstract classes or interfaces for control of some device types + some controllers and abstractions related to robotics concepts.",
+  "keywords": "motor, template, container",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/allivka/vislib_robo.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Aliev Daniil / Алиев Даниил",
+      "email": "allivka1920@gmail.com"
+    }
+  ],
+  "build": {
+    "includeDir": "include"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "alivka/vislib": "*"
+  },
+  "frameworks": "*",
+  "platforms": "*"
+}

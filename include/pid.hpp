@@ -55,6 +55,16 @@ public:
         return target;
     }
     
+    inline constexpr void clear(const TimeType& time = TimeType{}) noexcept(core::numberNoexcept<T, TimeType>()) {
+        Kp = T{};
+        Kd = T{};
+        Kd = T{};
+        errold  = T{};
+        integral = T{};
+        target = T{};
+        prevTime = time;
+    }
+    
 };
 
 } // namespace vislib

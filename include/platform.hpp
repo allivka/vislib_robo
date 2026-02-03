@@ -159,22 +159,22 @@ namespace calculators {
 template<typename TimeType> class GyroPidCalculator {
 public:
     PIDRegulator<double, TimeType>& pid;
-    core::UniquePtr<gyro::YawGetter<double>> getter;
+    PlatformMotorConfig config;
 
-    GyroPidCalculator(const PIDRegulator<TimeType>& pid, core::UniquePtr<gyro::YawGetter<double>>&& getter) noexcept : pid(pid), getter(core::move(getter)) { }
+    GyroPidCalculator(const PIDRegulator<TimeType>& pid, const PlatformMotorConfig& config) noexcept
+    : pid(pid), config(config) { }
 
     core::Result<PlatformMotorSpeeds> calculateSpeeds(
         TimeType time,
-        const PlatformMotorConfig& config,
+        const core::Angle<>& relTargetAngle,
+        const core::Angle<>& absCurrentAngle,
+        const core::Angle<>& absMaintainAngle,
         const motor::Speed& speed,
-        const double speedK = 1,
-        const double angularSpeed = 0
+        const double angularSpeed = 0,
+        const double speedK = 1
     ) noexcept {
-        core::Result<double> angle = getter->getYaw();
-
-        if (angle.isError()) return angle.error();
-
-        return calculatePlatformSpeeds(config, angle, speed, speedK, angularSpeed + pid.compute(angle, time));
+        
+        return calculatePlatformSpeeds(config, relTargetAngle.deg(), speed, speedK, angularSpeed + pid.compute(absCurrentAngle.deg(), absMaintainAngle.deg(), time));
     }
 };
 

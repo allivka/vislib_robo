@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vislib.hpp>
+#include "Arduino.h"
 
 namespace vislib::motor {
 

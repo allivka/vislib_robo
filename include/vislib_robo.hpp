@@ -8,3 +8,4 @@
 #include "pid.hpp"
 #include "trapezoidalMotion.hpp"
 #include "callback.hpp"
+#include "gyroPLatform.hpp"

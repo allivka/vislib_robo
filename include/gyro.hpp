@@ -11,15 +11,15 @@ template <typename T> struct YPR {
     
     YPR() = default;
     
-    YPR(const T& p_yaw, const T& p_pitch, const T& p_roll) noexcept(core::numberNoexcept<T>()) : yaw(p_yaw), pitch(p_pitch), roll(p_roll) {}
+    YPR(const T& p_yaw, const T& p_pitch, const T& p_roll) : yaw(p_yaw), pitch(p_pitch), roll(p_roll) {}
     
-    YPR(const YPR<T>& ) noexcept(core::numberNoexcept<T>()) = default;
+    YPR(const YPR<T>& ) = default;
     
-    YPR(YPR<T>&&) noexcept(core::numberNoexcept<T>()) = default;
+    YPR(YPR<T>&&) = default;
     
-    YPR<T>& operator=(const YPR<T>& other) noexcept(core::numberNoexcept<T>()) = default;
+    YPR<T>& operator=(const YPR<T>& other) = default;
     
-    YPR<T>& operator=(YPR<T>&& other) noexcept(core::numberNoexcept<T>()) = default;
+    YPR<T>& operator=(YPR<T>&& other) = default;
 };
 
 template <typename T> using Acceleration = core::Vector<T>;
@@ -418,15 +418,15 @@ template <typename YPRType, typename TimeType = YPRType, typename WT = YPRType, 
 
 public:
     
-    virtual inline vislib::core::Result<double> getYaw() const noexcept override {
+    virtual inline vislib::core::Result<YPRType> getYaw() const noexcept override {
         return this->yawConfig.integrator.getIntegral();
     }
 
-    virtual inline vislib::core::Result<double> getPitch() const noexcept override {
+    virtual inline vislib::core::Result<YPRType> getPitch() const noexcept override {
         return this->pitchConfig.integrator.getIntegral();
     }
 
-    virtual inline vislib::core::Result<double> getRoll() const noexcept override {
+    virtual inline vislib::core::Result<YPRType> getRoll() const noexcept override {
         return this->rollConfig.integrator.getIntegral();
     }
     

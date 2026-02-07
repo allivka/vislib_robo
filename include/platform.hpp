@@ -31,7 +31,9 @@ protected:
     core::Array<Controller> _controllers;
     
 public:
-
+    
+    Platform() = default;
+    
     Platform(PlatformMotorConfig configuration, size_t parallelismPrecision = 0) noexcept {
         configuration = updateParallelAxisesForMotors(configuration, parallelismPrecision);
         _controllers = core::Array<Controller>(configuration.Size());

@@ -16,13 +16,20 @@ public:
     
     GyroPlatform(
         const calculators::GyroPidCalculator<Time_t>& calculator,
-        core::UniquePtr<gyro::YawGetter<core::Angle<>>>&& yawGetter,
-        core::TimeGetter<Time_t>&& timeGetter,
+        core::UniquePtr<gyro::YawGetter<core::Angle<>>>& yawGetter,
+        core::TimeGetter<Time_t>& timeGetter,
         const PlatformMotorConfig& configuration,
         size_t parallelismPrecision = 0) noexcept
         : calculator(calculator), yawGetter(core::move(yawGetter)), timeGetter(core::move(timeGetter)), Platform<Controller_t>(configuration, parallelismPrecision) {
         
     }
+    
+    GyroPlatform() = default;
+    GyroPlatform(const GyroPlatform&) = default;
+    GyroPlatform(GyroPlatform&&) = default;
+    GyroPlatform& operator=(const GyroPlatform&) = default;
+    GyroPlatform& operator=(GyroPlatform&&) = default;
+    ~GyroPlatform() = default;
     
     void setHead(const core::Angle<>& angle) noexcept {
         headAngle = angle;

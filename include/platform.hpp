@@ -158,10 +158,10 @@ namespace calculators {
 
 template<typename TimeType> class GyroPidCalculator {
 public:
-    PIDRegulator<double, TimeType>& pid;
+    PIDRegulator<double, TimeType> pid;
     PlatformMotorConfig config;
 
-    GyroPidCalculator(const PIDRegulator<TimeType>& pid, const PlatformMotorConfig& config) noexcept
+    GyroPidCalculator(const PIDRegulator<double, TimeType>& pid, const PlatformMotorConfig& config) noexcept
     : pid(pid), config(config) { }
 
     core::Result<PlatformMotorSpeeds> calculateSpeeds(

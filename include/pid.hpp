@@ -15,7 +15,7 @@ protected:
     TimeType prevTime{};
     
 public:
-    PIDRegulator(const T& Kp, const T& Ki, const T& Kd, const T& Target = T{}) noexcept(core::numberNoexcept<T>()) : Kp(Kp), Ki(Ki), Kd(Kd), target(target) {}
+    PIDRegulator(const T& Kp, const T& Ki, const T& Kd, const T& target = T{}) noexcept(core::numberNoexcept<T>()) : Kp(Kp), Ki(Ki), Kd(Kd), target(target) {}
 
     
     [[nodiscard]] T compute(const T& measured, const T& target, const TimeType& time) noexcept(core::numberNoexcept<T, TimeType>()) {

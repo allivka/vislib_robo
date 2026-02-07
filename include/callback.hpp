@@ -32,13 +32,13 @@ template<typename Port_t> using CallbackAttacher = core::Callable<core::Error, C
 template<typename Port_t> using CallbackExecutor = core::Callable<core::Error, CallbackBase<Port_t>>;
 using CallbackErrorHandler = core::Callable<core::Error, core::Error>;
 
-template<typename Port_t> CallbackExecutor<Port_t> defaultCallbackExecutor = [](CallbackBase<Port_t>& callback) -> core::Error {
+template<typename Port_t> static CallbackExecutor<Port_t> defaultCallbackExecutor = [](CallbackBase<Port_t>& callback) -> core::Error {
     if (!callback.isValid()) return {core::ErrorCode::invalidResource, "Cannot call a Null callable object"};
     callback.execute();
     return {};
 };
 
-CallbackErrorHandler defaultErrorHandler = [](const core::Error& error) -> core::Error {
+static CallbackErrorHandler defaultErrorHandler = [](const core::Error& error) -> core::Error {
     return error;
 };
 
